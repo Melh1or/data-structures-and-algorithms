@@ -31,4 +31,6 @@ q.dequeue() // 2
 q.peek() // 3
 q.isEmpty() // false
 
-
+module.exports = {
+  createQueue,
+}
