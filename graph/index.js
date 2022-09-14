@@ -75,6 +75,28 @@ function createGraph(directed = false) {
           }
         })
       }
+    },
+    depthFirstSearch(startingNodeKey, visitFn) {
+      const startingNode = this.getNode(startingNodeKey)
+      const visited = nodes.reduce((acc, node) => {
+        acc[node.key] = false
+        return acc
+      }, {})
+
+      function explore(node) {
+        if (visited[node.key]) {
+          return
+        }
+
+        visitFn(node)
+        visited[node.key] = true
+
+        node.neighbors.forEach(node => {
+          explore(node)
+        })
+      }
+
+      explore(startingNode)
     }
   }
 }
